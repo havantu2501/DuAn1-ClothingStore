@@ -7,7 +7,7 @@ CREATE TABLE `User` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `fullname` varchar(50),
   `email` varchar(150),
-  `phoner_number` varchar(20),
+  `phone_number` varchar(20),
   `address` varchar(255),
   `password` int(255),
   `role_id` int,
