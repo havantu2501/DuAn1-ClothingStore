@@ -1,21 +1,24 @@
-<?php 
+<?php
 
 class HomeController
 {
     public $modelProduct;
-    public function __construct(){
+    public function __construct()
+    {
         $this->modelProduct = new Product();
     }
-    public function home(){
-        echo 'Trang chủ';
+    public function home()
+    {
+        require_once 'views/LayoutClient/home.php';
     }
-    public function homepage(){
+    public function homepage()
+    {
         echo 'HomePage';
     }
-    public function productpage(){
+    public function productpage()
+    {
         $listProduct = $this->modelProduct->getAllProduct();
-        var_dump($listProduct);die();
+        var_dump($listProduct);
+        die();
     }
-
-
 }
