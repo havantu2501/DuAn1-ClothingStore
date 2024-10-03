@@ -13,12 +13,10 @@ class HomeController
     }
     public function homepage()
     {
-        echo 'HomePage';
+        require_once 'views/LayoutClient/home.php';
     }
     public function productpage()
     {
-        $listProduct = $this->modelProduct->getAllProduct();
-        var_dump($listProduct);
-        die();
+        require_once 'views/LayoutClient/listProduct.php';
     }
 }

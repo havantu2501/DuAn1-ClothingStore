@@ -5,10 +5,10 @@
                 <div class="main_menu d-none d-lg-block">
                     <nav>
                         <ul>
-                            <li><a href="index.html">Home</a>
+                            <li><a href="<?= BASE_URL . '?act=homepage' ?>">Home</a>
 
                             </li>
-                            <li><a href="shop.html">shop</a>
+                            <li><a href="<?= BASE_URL . '?act=productpage' ?>">shop</a>
 
                             </li>
                             <li><a href="#">women</a>
