@@ -38,11 +38,21 @@
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="header_links">
+
                                     <ul>
+                                        <li><a> <?php if (isset($_SESSION['user_client'])) {
+                                                    echo  $_SESSION['user_client'];
+                                                } ?></a></li>
 
-                                        <li><a href="my-account.html" title="My account">My account</a></li>
 
-                                        <li><a href="login.html" title="Login">Login</a></li>
+                                        <?php if (isset($_SESSION['user_client'])) { ?>
+                                            <li><a href="my-account.html" title="My account">My account</a></li>
+                                            <li><a href="<?= BASE_URL . '?act=logout' ?>" title="Logout">Logout</a></li>
+                                        <?php } else { ?>
+                                            <li><a href="<?= BASE_URL . '?act=register' ?>" title="Register">Register</a></li>
+                                            <li><a href="<?= BASE_URL . '?act=login' ?>" title="Login">Login</a></li>
+                                        <?php } ?>
+
                                     </ul>
                                 </div>
                             </div>
@@ -55,7 +65,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/avatar.jpg" alt="" width="150" height="100"></a>
+                                    <a href="<?= BASE_URL ?>"><img src="assets/img/logo/avatar.jpg" alt="" width="150" height="100"></a>
                                 </div>
                             </div>
                             <div class="col-lg-9 col-md-9">

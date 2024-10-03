@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
@@ -8,7 +9,7 @@ require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './controllers/HomeController.php';
 
 // Require toàn bộ file Models
-require_once './models/Student.php';
+require_once './models/UserClient.php';
 require_once './models/Product.php';
 
 // Route
@@ -21,5 +22,7 @@ match ($act) {
     '/' => (new HomeController())->home(),
     'homepage' => (new HomeController())->homepage(),
     'productpage' => (new HomeController())->productpage(),
+    'login' => (new HomeController())->login(),
+    'check-login' => (new HomeController())->postlogin(),
     // default => 'Page not found', // Thêm trường hợp mặc định
 };

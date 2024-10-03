@@ -160,12 +160,13 @@ class AdminUser
          // die();
 
          if ($user && password_verify($password, $user['password'])) {
-            // var_dump('thành công');
-            // die;
-            return $user['email'];
+            if ($user['role_id'] == 1) {
+               return $user['email'];
+            } else {
+               return 'Bạn ko có quyền truy cập';
+            }
          } else {
-            // var_dump('fail');
-            // die;
+
             return 'Bạn nhập sai mật khẩu hoặc tài khoản!';
          }
       } catch (\Throwable $e) {

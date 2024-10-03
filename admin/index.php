@@ -47,7 +47,7 @@ match ($act) {
 
     //Auth
     'login-admin' => (new AdminUserController())->formLogin(),
-    'check-login-admin' => (new AdminUserController())->Login(),
+    'check-login-admin' => (new AdminUserController())->login(),
     'logout-admin' => (new AdminUserController())->Logout(),
     //Product
     'product' => (new AdminProductController())->product(),

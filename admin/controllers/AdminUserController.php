@@ -124,7 +124,7 @@ class AdminUserController
         require_once './views/auth/formLogin.php';
         deleteSessionError();
     }
-    public function login()
+    public function Login()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
