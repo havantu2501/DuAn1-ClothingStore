@@ -35,6 +35,8 @@ match ($act) {
     'edit-user' => (new AdminUserController())->postEditUser(),
     'delete-user' => (new AdminUserController())->deleteUser(),
     'show-user' => (new AdminUserController())->showUser(),
+    //
+    'reset-password' => (new AdminUserController())->resetPassword(),
     // Quản lý client
 
     'client' => (new AdminUserController())->client(),

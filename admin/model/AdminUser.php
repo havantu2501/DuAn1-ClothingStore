@@ -173,4 +173,22 @@ class AdminUser
          return false;
       }
    }
+   //
+
+   public function resetPassword($id, $password)
+   {
+      try {
+         $sql = 'UPDATE user SET password = :password WHERE id = :id';
+         $stmt = $this->conn->prepare($sql);
+         $stmt->execute([
+
+            ':password' => $password,
+            ':id' => $id
+
+         ]);
+         return true;
+      } catch (\Exception $e) {
+         echo "Lỗi" . $e->getMessage();
+      }
+   }
 }

@@ -93,6 +93,16 @@
                                                 </button>
                                             </a>
 
+                                            <a href="<?= BASE_URL_ADMIN . '?act=reset-password&id_user=' . $user['id'] ?>" onclick="return confirm('Do you really want to reset password?')">
+                                                <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
+                                                    type="submit" data-toggle="tooltip" title="Reset Password"
+                                                    data-placement="bottom">
+                                                    <span class="btn-icon-wrapper opacity-8">
+                                                        <i class="fa fa-sync fa-w-20"></i>
+                                                    </span>
+                                                </button>
+                                            </a>
+
                                         </td>
                                     </tr>
 

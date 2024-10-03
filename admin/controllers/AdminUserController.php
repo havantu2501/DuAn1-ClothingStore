@@ -212,4 +212,23 @@ class AdminUserController
             exit();
         }
     }
+    // resser Pass
+    public function resetPassword()
+    {
+        $user_id = $_GET['id_user'];
+        $user = $this->modelUser->getDetailUser($user_id);
+        // pass mặc định
+        $password = password_hash('123123abc', PASSWORD_BCRYPT);
+        $status = $this->modelUser->resetPassword($user_id, $password);
+        if ($status && $user['role_id'] == 1) {
+            header("Location: " . BASE_URL_ADMIN . '?act=user');
+            exit();
+        } elseif ($status && $user['role_id'] == 2) {
+            header("Location: " . BASE_URL_ADMIN . '?act=client');
+            exit();
+        } else {
+            var_dump('Lỗi');
+            die;
+        }
+    }
 }

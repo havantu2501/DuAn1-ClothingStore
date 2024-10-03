@@ -73,12 +73,21 @@
                                                 </span>
                                             </a>
 
-                                            <a href="<?= BASE_URL_ADMIN . '?act=delete-client&id_client=' . $client['id'] ?>" onclick="return confirm('Do you really want to delete this item?')">
+                                            <!-- <a href="<?= BASE_URL_ADMIN . '?act=delete-client&id_client=' . $client['id'] ?>" onclick="return confirm('Do you really want to delete this item?')">
                                                 <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
                                                     type="submit" data-toggle="tooltip" title="Delete"
                                                     data-placement="bottom">
                                                     <span class="btn-icon-wrapper opacity-8">
                                                         <i class="fa fa-trash fa-w-20"></i>
+                                                    </span>
+                                                </button>
+                                            </a> -->
+                                            <a href="<?= BASE_URL_ADMIN . '?act=reset-password&id_user=' . $client['id'] ?>" onclick="return confirm('Do you really want to reset password?')">
+                                                <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
+                                                    type="submit" data-toggle="tooltip" title="Reset Password"
+                                                    data-placement="bottom">
+                                                    <span class="btn-icon-wrapper opacity-8">
+                                                        <i class="fa fa-sync fa-w-20"></i>
                                                     </span>
                                                 </button>
                                             </a>
