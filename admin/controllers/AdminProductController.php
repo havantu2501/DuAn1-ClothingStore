@@ -4,9 +4,11 @@
 class AdminProductController
 {
     public $modelProduct;
+    public $modelCategory;
     public function __construct()
     {
         $this->modelProduct = new AdminProduct();
+        $this->modelCategory = new AdminCategory();
     }
 
     public function product()
@@ -30,6 +32,8 @@ class AdminProductController
 
     public function formAddProduct()
     {
+        $listCategory_id = $this->modelCategory->getAllCategory();
+        // $listCategory = $categoryModel->getAllCategory(); // Lấy danh mục t
         require_once './views/danhmuc/addProduct.php';
     }
 
@@ -42,6 +46,12 @@ class AdminProductController
             $description = $_POST['description'];
             $category_id = $_POST['category_id'];
             $thumbnail = $_FILES['thumbnail'];
+            // Kiểm tra nếu trường 'created_at' và 'updated_at' tồn tại
+            $created_at = isset($_POST['created_at']) ? $_POST['created_at'] : date('Y-m-d');
+            $updated_at = isset($_POST['updated_at']) ? $_POST['updated_at'] : date('Y-m-d');
+
+
+
             // $file_thumb = uploadFile1($thumbnail, './uploads/');
             $foderupload = './uploads/';
             $pathStorage = $foderupload . time() . $thumbnail['name'];
@@ -58,11 +68,15 @@ class AdminProductController
             if (empty($title)) {
                 $errors['title'] = 'Ko để trống';
             }
-
+            if (empty($category_id)) {
+                echo "Lỗi: Vui lòng chọn danh mục.";
+                return;
+            }
+            // var_dump($errors);die;   
 
             if (empty($errors)) {
-                $status = $this->modelProduct->insertProduct($title, $price, $discount, $file_thumb, $description, $category_id);
-                // var_dump($status);die;
+                $status = $this->modelProduct->insertProduct($title, $category_id, $price, $discount, $file_thumb, $description, $created_at, $updated_at);
+                var_dump($status);
 
                 header("Location: " . BASE_URL_ADMIN . '?act=product');
                 exit();
@@ -102,10 +116,19 @@ class AdminProductController
             $title = $_POST['title'];
             $price = $_POST['price'];
             $discount = $_POST['discount'];
-            $thumbnail = $_POST['thumbnail'];
+            $thumbnail = $_FILES['thumbnail'];
             $description = $_POST['description'];
-            $category_id = $_POST['category_id'];
+            // var_dump($thumbnail);die;
 
+            // var_dump($title);die;
+            // Kiểm tra nếu có upload ảnh mới
+            if ($thumbnail['error'] === 0) { // 0 nghĩa là có file mới được upload
+                // Upload ảnh mới
+                $file_thumb = uploadFile($thumbnail, './uploads/');
+            } else {
+                // Nếu không upload ảnh mới, giữ lại ảnh cũ từ database
+                $file_thumb = $_POST['current_thumbnail'];
+            }
 
             $errors = [];
             if (empty($title)) {
@@ -113,11 +136,11 @@ class AdminProductController
             }
 
             if (empty($errors)) {
-                $this->modelProduct->updateProduct($id, $title, $price, $discount, $thumbnail, $description, $category_id);
+                $this->modelProduct->updateProduct($id, $title, $price, $discount, $file_thumb, $description);
                 header("Location: " . BASE_URL_ADMIN . '?act=product');
                 exit();
             } else {
-                $product = ['id' => $id, 'title' => $title, 'price' => $price, 'discount' => $discount, 'thumbnail' => $thumbnail, 'description' => $description, 'category_id' =>  $category_id];
+                $product = ['id' => $id, 'title' => $title, 'price' => $price, 'discount' => $discount, 'thumbnail' => $thumbnail, 'description' => $description];
                 require_once './views/danhmuc/editProduct.php';
             }
         }

@@ -17,19 +17,21 @@ class AdminProduct
             echo "Lỗi" . $e->getMessage();
         }
     }
-    public function insertProduct($title, $price, $discount, $thumbnail, $description, $category_id)
+    public function insertProduct($title, $category_id, $price, $discount, $thumbnail, $description, $created_at, $updated_at)
     {
         try {
-            $sql = 'INSERT INTO product (title, price, discount, thumbnail, description, category_id)
-         VALUES (:title, :price, :discount, :thumbnail, :description, :category_id)';
+            $sql = 'INSERT INTO product (title,category_id, price, discount, thumbnail, description,created_at,updated_at)
+         VALUES (:title,:category_id, :price, :discount, :thumbnail, :description,:created_at,:updated_at )';
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':title' => $title,
+                ':category_id' => $category_id,
                 ':price' => $price,
                 ':discount' => $discount,
                 ':thumbnail' => $thumbnail,
                 ':description' => $description,
-                ':category_id' => $category_id
+                ':created_at' => $created_at,
+                ':updated_at' => $updated_at
             ]);
             return true;
         } catch (\Exception $e) {
@@ -94,10 +96,10 @@ class AdminProduct
         }
     }
 
-    public function updateProduct($id, $title, $price, $discount, $thumbnail, $description,  $category_id)
+    public function updateProduct($id, $title, $price, $discount, $thumbnail, $description)
     {
         try {
-            $sql = 'UPDATE product SET title = :title, price = :price, discount = :discount, thumbnail = :thumbnail, description = :description, category_id = :category_id  WHERE id = :id';
+            $sql = 'UPDATE product SET title = :title, price = :price, discount = :discount, thumbnail = :thumbnail, description = :description  WHERE id = :id';
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':title' => $title,
@@ -105,7 +107,6 @@ class AdminProduct
                 ':discount' => $discount,
                 ':thumbnail' => $thumbnail,
                 ':description' => $description,
-                ':category_id' =>  $category_id,
                 ':id' => $id
 
             ]);

@@ -1,3 +1,7 @@
+<?php
+// Bao gồm model AdminCategory
+require_once './admin/model/AdminCategory.php';
+?>
 <div class="header_bottom">
     <div class="row">
         <div class="col-12">
@@ -11,12 +15,17 @@
                             <li><a href="<?= BASE_URL . '?act=productpage' ?>">shop</a>
 
                             </li>
-                            <li><a href="#">women</a>
+                            <?php
+                            // Khởi tạo model danh mục
+                            $modelCategory = new AdminCategory();
+                            // Lấy tất cả danh mục
+                            $categories = $modelCategory->getAllCategory();
 
-                            </li>
-                            <li><a href="#">men</a>
+                            // Hiển thị từng danh mục
+                            foreach ($categories as $category): ?>
+                                <li><a href="<?= BASE_URL . '?act=category&id=' . $category['id'] ?>"><?= $category['name'] ?></a></li>
+                            <?php endforeach; ?>
 
-                            </li>
 
                             <li><a href="contact.html">contact us</a></li>
 

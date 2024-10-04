@@ -1,33 +1,29 @@
 <!-- header -->
-<?php include './views/layout/header.php' ?>
+<?php include './views/layout/header.php'; ?>
 
-<!-- sidebar  -->
-<?php include './views/layout/sidebar.php' ?>
+<!-- sidebar -->
+<?php include './views/layout/sidebar.php'; ?>
 
 <div class="app-main__outer">
-
     <!-- Main -->
     <div class="app-main__inner">
         <div class="app-page-title">
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
-
                     <div>
-                        <i class="fa-regular fa-user"></i>
-                        Product
+                        <i class="fa-regular fa-file-alt"></i>
+                        Orders
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            View, update, delete, and manage orders.
                         </div>
                     </div>
                 </div>
-
                 <div class="page-title-actions">
-                    <a href="<?= BASE_URL_ADMIN . '?act=form-add-product' ?>"
-                        class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
-                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                    <a href="<?= BASE_URL_ADMIN . '?act=form-add-order' ?>" class="btn btn-primary">
+                        <span class="btn-icon-wrapper pr-2 opacity-8">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
-                        Create
+                        Thêm Order
                     </a>
                 </div>
             </div>
@@ -36,74 +32,60 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
-
-
                     <div class="table-responsive">
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th class="text-center">STT</th>
-                                    <th class="text-center">Title</th>
-                                    <th class="text-center">Category_id</th>
-                                    <th class="text-center">Price</th>
-                                    <th class="text-center">Discuot</th>
-                                    <th class="text-center">Image</th>
-                                    <th class="text-center">Description</th>
-                                    <th class="text-center">Create_At</th>
-                                    <th class="text-center">Update_Up</th>
-                                    <th class="text-center">Action</th>
-
-
+                                    <th class="text-center">Họ và Tên</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Số Điện Thoại</th>
+                                    <th class="text-center">Địa Chỉ</th>
+                                    <th class="text-center">Ngày Đặt Hàng</th> <!-- Thêm cột này -->
+                                    <th class="text-center">Trạng Thái</th>
+                                    <th class="text-center">Tổng Tiền</th>
+                                    <th class="text-center">Hành Động</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($listProduct as $key => $product): ?>
-
+                                <?php foreach ($listOrder as $key => $order): ?>
                                     <tr>
                                         <td class="text-center text-muted"><?= $key + 1 ?> </td>
                                         <td>
                                             <div class="widget-content p-0">
                                                 <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-
-                                                    </div>
                                                     <div class="widget-content-left flex2">
-                                                        <div class="widget-heading"><?= $product['title'] ?> </div>
+                                                        <div class="widget-heading"><?= $order['fullname'] ?> </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-center"> <?= $product['category_id'] ?></td>
-
-                                        <td class="text-center"> <?= $product['price'] ?></td>
+                                        <td class="text-center"><?= $order['email'] ?></td>
+                                        <td class="text-center"><?= $order['phone_number'] ?></td>
+                                        <td class="text-center"><?= $order['address'] ?></td>
                                         <td class="text-center">
-                                            <?= $product['discount'] ?>
+                                            <?= date('d/m/Y', strtotime($order['order_date'])) ?> <!-- Hiển thị ngày đặt hàng -->
                                         </td>
                                         <td class="text-center">
-                                            <img src="<?= BASE_URL . $product['thumbnail']  ?>" style="width: 100px" alt=""
-                                                onerror="this.onerror=null; this.src='https://truongansafety.com/wp-content/uploads/2022/04/pr04-1-scaled-1.jpg' ">
+                                            <?= $order['status'] == 1 ? 'Đã Hoàn Thành' : 'Chưa Xử Lý' ?>
                                         </td>
-                                        <td class=" text-center">
-                                            <?= $product['description'] ?>
-                                        </td>
-                                        <td class="text-center"> <?= $product['created_at'] ?></td>
-                                        <td class="text-center"> <?= $product['updated_at'] ?></td>
-
                                         <td class="text-center">
-                                            <a href="<?= BASE_URL_ADMIN . '?act=show-product&id_product=' . $product['id'] ?>"
+                                            <?= number_format($order['total_money'], 0, ',', '.') ?> VND
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="<?= BASE_URL_ADMIN . '?act=show-order&id_order=' . $order['id'] ?>"
                                                 class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
-                                                Details
+                                                Chi Tiết
                                             </a>
-                                            <a href="<?= BASE_URL_ADMIN . '?act=form-edit-product&id_product=' . $product['id'] ?>"
+                                            <a href="<?= BASE_URL_ADMIN . '?act=form-edit-order&id_order=' . $order['id'] ?>"
                                                 data-toggle="tooltip" title="Edit" data-placement="bottom"
                                                 class="btn btn-outline-warning border-0 btn-sm">
                                                 <span class="btn-icon-wrapper opacity-8">
                                                     <i class="fa fa-edit fa-w-20"></i>
                                                 </span>
                                             </a>
-
-                                            <a href="<?= BASE_URL_ADMIN . '?act=delete-product&id_product=' . $product['id'] ?>"
-                                                onclick="return confirm('Do you really want to delete this item?')">
+                                            <a href="<?= BASE_URL_ADMIN . '?act=delete-order&id_order=' . $order['id'] ?>"
+                                                onclick="return confirm('Bạn thực sự muốn xóa đơn hàng này?')">
                                                 <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
                                                     type="submit" data-toggle="tooltip" title="Delete"
                                                     data-placement="bottom">
@@ -112,30 +94,25 @@
                                                     </span>
                                                 </button>
                                             </a>
-
                                         </td>
                                     </tr>
-
                                 <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
     </div>
     <!-- End Main -->
 
-
 </div>
 </div>
 
 </div>
 <!-- footer -->
-<?php include './views/layout/footer.php' ?>
+<?php include './views/layout/footer.php'; ?>
+
 <!-- Code injected by live-server -->
 <script>
     // <![CDATA[  <-- For SVG support
@@ -175,5 +152,4 @@
     // ]]>
 </script>
 </body>
-
 </html>

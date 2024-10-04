@@ -10,11 +10,13 @@ require_once '../commons/function.php'; // Hàm hỗ trợ
 require_once './controllers/AdminCategoryController.php';
 require_once './controllers/AdminUserController.php';
 require_once './controllers/AdminProductController.php';
+require_once './controllers/AdminOrderController.php';
 
 // Require toàn bộ file Models
 require_once './model/AdminCategory.php';
 require_once './model/AdminUser.php';
 require_once './model/AdminProduct.php';
+require_once './model/AdminOrder.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -64,4 +66,12 @@ match ($act) {
     'form-edit-category' => (new AdminCategoryController())->formEditCategory(),
     'edit-category' => (new AdminCategoryController())->postEditCategory(),
     'delete-category' => (new AdminCategoryController())->deleteCategory(),
+    //oder
+    'order' => (new AdminOrderController())->order(),
+    'form-add-order' => (new AdminOrderController())->formAddOrder(),
+    'add-order' => (new AdminOrderController())->postAddOrder(),
+    'delete-order' => (new AdminOrderController())->deleteOrder(),
+    'show-order' => (new AdminOrderController())->showOrder(),
+    'edit-order' => (new AdminOrderController())->postEditOrder(),
+    'form-edit-order' => (new AdminOrderController())->formEditOrder(),
 };

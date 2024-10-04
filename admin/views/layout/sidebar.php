@@ -43,7 +43,7 @@
                     </li>
 
                     <li>
-                        <a href="">
+                        <a href="<?= BASE_URL_ADMIN . '?act=order' ?>">
                             <i class="metismenu-icon"></i>Order
                         </a>
                     </li>
