@@ -11,6 +11,7 @@ require_once './controllers/HomeController.php';
 // Require toàn bộ file Models
 require_once './models/UserClient.php';
 require_once './models/Product.php';
+require_once './models/Cart.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -25,4 +26,9 @@ match ($act) {
     'login' => (new HomeController())->login(),
     'check-login' => (new HomeController())->postlogin(),
     // default => 'Page not found', // Thêm trường hợp mặc định
+
+    // product
+    'detail-product' => (new HomeController())->detailProduct(),
+    // cart
+    'add-cart' => (new HomeController())->addCart(),
 };

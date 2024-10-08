@@ -27,19 +27,7 @@
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="modal_tab_button">
-                                     <ul class="nav product_navactive" role="tablist">
-                                         <li>
-                                             <a class="nav-link active" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false"><img src="assets/img/cart/cart17.jpg" alt=""></a>
-                                         </li>
-                                         <li>
-                                             <a class="nav-link" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><img src="assets/img/cart/cart18.jpg" alt=""></a>
-                                         </li>
-                                         <li>
-                                             <a class="nav-link button_three" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false"><img src="assets/img/cart/cart19.jpg" alt=""></a>
-                                         </li>
-                                     </ul>
-                                 </div>
+
                              </div>
                          </div>
                          <div class="col-lg-7 col-md-7 col-sm-12">
@@ -65,24 +53,16 @@
                                      </ul>
                                  </div>
                                  <div class="modal_add_to_cart mb-15">
-                                     <form action="#">
-                                         <input min="0" max="100" step="2" value="1" type="number">
+                                     <form action="<?= BASE_URL . '?act=add-cart' ?>" method="post">
+                                         <input min="0" max="100" step="2" value="1" type="number" name="quantity">
+                                         <input type="hidden" name="id" value="<?= $product = ['id']; ?>">
                                          <button type="submit">add to cart</button>
                                      </form>
                                  </div>
                                  <div class="modal_description mb-15">
                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                                  </div>
-                                 <div class="modal_social">
-                                     <h2>Share this product</h2>
-                                     <ul>
-                                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                         <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                     </ul>
-                                 </div>
+
                              </div>
                          </div>
                      </div>

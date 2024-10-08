@@ -9,7 +9,7 @@ CREATE TABLE `User` (
   `email` varchar(150),
   `phone_number` varchar(20),
   `address` varchar(255),
-  `password` int(255),
+  `password` varchar(255),
   `role_id` int,
   `created_at` datetime,
   `updated_at` datetime
@@ -58,6 +58,21 @@ CREATE TABLE `Order_Details` (
   `num` int,
   `total_money` int
 );
+-- --
+CREATE TABLE `Cart` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int,
+  FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
+);
+CREATE TABLE `Cart_Details` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `cart_id` int,
+  `product_id` int,
+  `quantity` int,
+  FOREIGN KEY (`cart_id`) REFERENCES `Cart` (`id`),
+  FOREIGN KEY (`product_id`) REFERENCES `Product` (`id`)
+);
+-- --
 
 ALTER TABLE `User` ADD FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`);
 

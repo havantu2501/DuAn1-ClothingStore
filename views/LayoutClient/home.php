@@ -51,33 +51,44 @@
                  </div>
              </div>
          </div>
-         <div class="row">
-             <div class="">
-                 <div class="col-lg-3">
-                     <div class="single_product">
-                         <div class="product_thumb">
-                             <a href="single-product.html"><img src="assets/img/product/product1.jpg" alt=""></a>
-                             <div class="img_icone">
-                                 <img src="assets/img/cart/span-new.png" alt="">
+         <div class="row"> <!-- Gộp tất cả sản phẩm vào một hàng duy nhất -->
+             <?php if (isset($listProduct) && is_array($listProduct) && !empty($listProduct)): ?>
+                 <?php foreach ($listProduct as $key => $product): ?>
+                     <div class="col-lg-3 col-md-4 col-sm-6"> <!-- Sử dụng các lớp Bootstrap để căn chỉnh -->
+                         <div class="single_product">
+                             <div class="product_thumb">
+                                 <a href="<?= BASE_URL . '?act=detail-product&id_product=' . $product['id']; ?>">
+                                     <img src="<?= BASE_URL . $product['thumbnail'] ?>" alt="">
+                                 </a>
+                                 <div class="img_icone">
+                                     <img src="assets/img/cart/span-new.png" alt="">
+                                 </div>
+                                 <div class="product_action">
+                                     <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                 </div>
                              </div>
-                             <div class="product_action">
-                                 <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                             <div class="product_content">
+                                 <span class="product_price"><?= $product['price'] ?>$</span>
+                                 <h3 class="product_title">
+                                     <a href="<?= BASE_URL . '?act=detail-product&id_product=' . $product['id']; ?>"><?= $product['title'] ?></a>
+                                 </h3>
                              </div>
-                         </div>
-                         <div class="product_content">
-                             <span class="product_price">$50.00</span>
-                             <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
-                         </div>
-                         <div class="product_info">
-                             <ul>
-                                 <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal_box" title="Quick view">View Detail</a></li>
-                             </ul>
+                             <div class="product_info">
+                                 <ul>
+                                     <li><a href="#" title="Add to Wishlist">Add to Wishlist</a></li>
+                                     <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal_box" title="Quick view">View Detail</a></li>
+                                 </ul>
+                             </div>
                          </div>
                      </div>
-                 </div>
-             </div>
+                 <?php endforeach; ?>
+             <?php else: ?>
+                 <p>No products available.</p>
+             <?php endif; ?>
          </div>
+
+
+
      </div>
      <!--new product area start-->
 
