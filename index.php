@@ -31,4 +31,5 @@ match ($act) {
     'detail-product' => (new HomeController())->detailProduct(),
     // cart
     'add-cart' => (new HomeController())->addCart(),
+    'cart' => (new HomeController())->Cart(),
 };

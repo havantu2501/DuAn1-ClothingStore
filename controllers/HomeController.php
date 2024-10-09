@@ -32,7 +32,7 @@ class HomeController
         $id = $_GET['id_product'];
         $product = $this->modelProduct->getDetailProduct($id);
         if ($product) {
-            require_once './views/Layout/detailProduct.php';
+            require_once './views/LayoutClient/singleProduct.php';
         } else {
             header("Location: " . BASE_URL);
             exit();
@@ -84,7 +84,7 @@ class HomeController
                 }
 
                 // Lấy thông tin sản phẩm từ POST
-                $id = $_POST['id'];
+                $product_id = $_POST['product_id'];
                 $quantity = $_POST['quantity'];
 
                 $checkProduct = false;
@@ -92,9 +92,9 @@ class HomeController
 
                 // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
                 foreach ($detailCart as $detail) {
-                    if ($detail['id'] == $id) {
+                    if ($detail['product_id'] == $product_id) {
                         $newQuantity = $detail['quantity'] + $quantity; // Cập nhật số lượng
-                        $this->modelCart->updateQuantity($cart['id'], $id, $newQuantity);
+                        $this->modelCart->updateQuantity($cart['id'], $product_id, $newQuantity);
                         $checkProduct = true; // Đánh dấu rằng sản phẩm đã tồn tại
                         break;
                     }
@@ -102,15 +102,34 @@ class HomeController
 
                 // Nếu sản phẩm không có trong giỏ hàng, thêm sản phẩm mới
                 if (!$checkProduct) {
-                    $this->modelCart->addDetailCart($cart['id'], $id, $newQuantity);
+                    $this->modelCart->addDetailCart($cart['id'], $product_id, $newQuantity);
                 }
 
-                var_dump('Thêm giỏ hàng thành công');
-                die;
+                header("Location:" . BASE_URL . '?act=cart');
             } else {
-                var_dump('Chưa đăng nhập');
+                echo 'Chưa đăng nhập';
                 die;
             }
+        }
+    }
+
+    public function Cart()
+    {
+        if (isset($_SESSION['user_client'])) {
+            $mail = $this->modelUserClient->getUserFromEmail($_SESSION['user_client']);
+
+            // Lấy giỏ hàng từ người dùng
+            $cart = $this->modelCart->getCartFromUser($mail['id']);
+            if (!$cart) {
+                $cartId = $this->modelCart->addCart($mail['id']);
+                $cart = ['id' => $cartId];
+            }
+
+            $detailCart = $this->modelCart->getDetailCart($cart['id']);
+            require_once './views/LayoutClient/cart.php';
+        } else {
+            echo 'Chưa đăng nhập';
+            die;
         }
     }
 }

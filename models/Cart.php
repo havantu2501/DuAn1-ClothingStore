@@ -27,7 +27,10 @@ class Cart
     {
         try {
 
-            $sql = 'SELECT * FROM cart_details WHERE cart_id = :cart_id';
+            $sql = 'SELECT cart_details.*, product.title, product.thumbnail, product.price, product.discount
+            FROM cart_details
+            INNER JOIN product ON cart_details.product_id = product_id
+             WHERE cart_details.cart_id = :cart_id';
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':cart_id' => $id]);
@@ -54,14 +57,14 @@ class Cart
             return [];
         }
     }
-    public function updateQuantity($cart_id, $id, $quantity)
+    public function updateQuantity($cart_id, $product_id, $quantity)
     {
         try {
 
-            $sql = 'UPDATE cart_details SET quantity = :quantity WHERE cart_id = :cart_id AND id = :id';
+            $sql = 'UPDATE cart_details SET quantity = :quantity WHERE cart_id = :cart_id AND product_id = :product_id';
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':cart_id' => $cart_id, ':id' => $id, ':quantity' => $quantity]);
+            $stmt->execute([':cart_id' => $cart_id, ':product_id' => $product_id, ':quantity' => $quantity]);
 
             return $this->conn->lastInsertId();
         } catch (Exception $e) {
@@ -70,15 +73,15 @@ class Cart
         }
     }
 
-    public function addDetailCart($cart_id, $id, $quantity)
+    public function addDetailCart($cart_id, $product_id, $quantity)
     {
         try {
 
-            $sql = 'INSERT INTO cart_details (cart_id, id, quantity)
-            VALUES (:cart_id, :id, :quantity)';
+            $sql = 'INSERT INTO cart_details (cart_id, product_id, quantity)
+            VALUES (:cart_id, :product_id, :quantity)';
 
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':cart_id' => $cart_id, ':id' => $id, ':quantity' => $quantity]);
+            $stmt->execute([':cart_id' => $cart_id, ':product_id' => $product_id, ':quantity' => $quantity]);
 
             return $this->conn->lastInsertId();
         } catch (Exception $e) {

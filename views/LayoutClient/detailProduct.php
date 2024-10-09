@@ -54,7 +54,7 @@
                                  </div>
                                  <div class="modal_add_to_cart mb-15">
                                      <form action="<?= BASE_URL . '?act=add-cart' ?>" method="post">
-                                         <input min="0" max="100" step="2" value="1" type="number" name="quantity">
+                                         <input min="0" max="100" value="1" type="number" name="quantity">
                                          <input type="hidden" name="id" value="<?= $product = ['id']; ?>">
                                          <button type="submit">add to cart</button>
                                      </form>
