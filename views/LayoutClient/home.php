@@ -63,9 +63,7 @@
                                  <div class="img_icone">
                                      <img src="assets/img/cart/span-new.png" alt="">
                                  </div>
-                                 <div class="product_action">
-                                     <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                 </div>
+
                              </div>
                              <div class="product_content">
                                  <span class="product_price"><?= $product['price'] ?>$</span>
@@ -76,7 +74,7 @@
                              <div class="product_info">
                                  <ul>
                                      <li><a href="#" title="Add to Wishlist">Add to Wishlist</a></li>
-                                     <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal_box" title="Quick view">View Detail</a></li>
+                                     <li><a href="<?= BASE_URL . '?act=detail-product&id_product=' . $product['id']; ?>">View Detail</a></li>
                                  </ul>
                              </div>
                          </div>
@@ -142,11 +140,5 @@
 
 
 
- <!-- all js here -->
- <script src="assets/js/vendor/jquery-3.4.1.min.js"></script>
- <script src="assets/js/popper.js"></script>
- <script src="assets/js/bootstrap.min.js"></script>
- <script src="assets/js/ajax-mail.js"></script>
- <script src="assets/js/plugins.js"></script>
- <script src="assets/js/main.js"></script>
+
  </body>

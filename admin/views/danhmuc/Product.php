@@ -46,7 +46,7 @@
                                     <th class="text-center">Title</th>
                                     <th class="text-center">Category_id</th>
                                     <th class="text-center">Price</th>
-                                    <th class="text-center">Discuot</th>
+                                    <th class="text-center">Discount</th>
                                     <th class="text-center">Image</th>
                                     <th class="text-center">Description</th>
                                     <th class="text-center">Create_At</th>

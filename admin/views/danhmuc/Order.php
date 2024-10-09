@@ -37,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">STT</th>
-                                    <th class="text-center">Họ và Tên</th>
+                                    <th class="text-center">Tên Người Nhận</th>
                                     <th class="text-center">Email</th>
                                     <th class="text-center">Số Điện Thoại</th>
                                     <th class="text-center">Địa Chỉ</th>
@@ -70,7 +70,7 @@
                                             <?= $order['status'] == 1 ? 'Đã Hoàn Thành' : 'Chưa Xử Lý' ?>
                                         </td>
                                         <td class="text-center">
-                                            <?= number_format($order['total_money'], 0, ',', '.') ?> VND
+                                            <?= number_format($order['total_money'], 0, ',', '.') ?> $
                                         </td>
                                         <td class="text-center">
                                             <a href="<?= BASE_URL_ADMIN . '?act=show-order&id_order=' . $order['id'] ?>"
@@ -152,4 +152,5 @@
     // ]]>
 </script>
 </body>
+
 </html>

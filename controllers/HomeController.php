@@ -26,6 +26,12 @@ class HomeController
         require_once 'views/LayoutClient/listProduct.php';
     }
 
+    public function myAccount()
+    {
+        require_once 'views/LayoutClient/myAcount.php';
+    }
+
+
     //
     public function detailProduct()
     {
@@ -64,6 +70,16 @@ class HomeController
                 header("Location: " . BASE_URL . '?act=login');
                 exit();
             }
+        }
+    }
+    public function Logout()
+    {
+        session_start(); // Bắt đầu phiên (nếu chưa khởi tạo)
+
+        if (isset($_SESSION['user_client'])) {
+            unset($_SESSION['user_client']); // Hủy biến session user_admin
+            header("Location: " . BASE_URL . '?act=login'); // Chuyển hướng
+            exit(); // Dừng mã
         }
     }
     //

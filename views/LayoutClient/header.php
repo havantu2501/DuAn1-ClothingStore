@@ -46,7 +46,7 @@
 
 
                                         <?php if (isset($_SESSION['user_client'])) { ?>
-                                            <li><a href="my-account.html" title="My account">My account</a></li>
+                                            <li><a href="<?= BASE_URL . '?act=my-account' ?>" title="My account">My account</a></li>
                                             <li><a href="<?= BASE_URL . '?act=logout' ?>" title="Logout">Logout</a></li>
                                         <?php } else { ?>
                                             <li><a href="<?= BASE_URL . '?act=register' ?>" title="Register">Register</a></li>

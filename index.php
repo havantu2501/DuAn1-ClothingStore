@@ -23,8 +23,10 @@ match ($act) {
     '/' => (new HomeController())->home(),
     'homepage' => (new HomeController())->homepage(),
     'productpage' => (new HomeController())->productpage(),
+    'my-account' => (new HomeController())->myAccount(),
     'login' => (new HomeController())->login(),
     'check-login' => (new HomeController())->postlogin(),
+    'logout' => (new HomeController())->Logout(),
     // default => 'Page not found', // Thêm trường hợp mặc định
 
     // product

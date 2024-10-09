@@ -62,6 +62,6 @@
     </div>
     <!--product details end-->
 
+</div>
 
-
-    <?php include 'views/LayoutClient/footer.php' ?>
+<?php include 'views/LayoutClient/footer.php' ?>
